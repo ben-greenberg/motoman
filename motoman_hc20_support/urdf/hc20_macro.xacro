@@ -17,6 +17,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/base_link.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}link_1_s">
       <visual>
@@ -30,6 +34,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/link_1_s.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}link_2_l">
       <visual>
@@ -43,6 +51,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/link_2_l.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}link_3_u">
       <visual>
@@ -56,6 +68,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/link_3_u.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}link_4_r">
       <visual>
@@ -69,6 +85,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/link_4_r.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}link_5_b">
       <visual>
@@ -82,6 +102,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/link_5_b.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}link_6_t">
       <visual>
@@ -95,6 +119,10 @@
           <mesh filename="package://motoman_hc20_support/meshes/hc20/collision/link_6_t.stl"/>
         </geometry>
       </collision>
+      <inertial>
+        <mass value="0.01" />
+        <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+      </inertial>
     </link>
     <link name="${prefix}tool0"/>
     <!-- end of link list -->
@@ -107,6 +135,16 @@
       <axis xyz="0 0 1" />
       <limit lower="${radians(-180)}" upper="${radians(180)}" effort="917.28" velocity="${radians(80)}"/>
     </joint>
+    <transmission name="${prefix}joint_1_s_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="${prefix}joint_1_s">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+          </joint>
+          <actuator name="${prefix}joint_1_s_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+          </actuator>
+    </transmission>
+
     <joint name="${prefix}joint_2_l" type="revolute">
       <parent link="${prefix}link_1_s"/>
       <child link="${prefix}link_2_l"/>
@@ -114,6 +152,17 @@
       <axis xyz="0 1 0" />
       <limit lower="${radians(-180)}" upper="${radians(180)}" effort="1223.04" velocity="${radians(80)}"/>
     </joint>
+    <transmission name="${prefix}joint_2_l_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_2_l">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_2_l_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <joint name="${prefix}joint_3_u" type="revolute">
       <parent link="${prefix}link_2_l"/>
       <child link="${prefix}link_3_u"/>
@@ -121,6 +170,17 @@
       <axis xyz="0 -1 0" />
       <limit lower="${radians(-67)}" upper="${radians(247)}" effort="642.88" velocity="${radians(120)}"/>
     </joint>
+    <transmission name="${prefix}joint_3_u_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_3_u">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_3_u_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <joint name="${prefix}joint_4_r" type="revolute">
       <parent link="${prefix}link_3_u"/>
       <child link="${prefix}link_4_r"/>
@@ -128,6 +188,17 @@
       <axis xyz="-1 0 0" />
       <limit lower="${radians(-210)}" upper="${radians(210)}" effort="368.48" velocity="${radians(130)}"/>
     </joint>
+    <transmission name="${prefix}joint_4_r_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_4_r">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_4_r_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <joint name="${prefix}joint_5_b" type="revolute">
       <parent link="${prefix}link_4_r"/>
       <child link="${prefix}link_5_b"/>
@@ -135,6 +206,17 @@
       <axis xyz="0 -1 0" />
       <limit lower="${radians(-180)}" upper="${radians(180)}" effort="141.12" velocity="${radians(180)}"/>
     </joint>
+    <transmission name="${prefix}joint_5_b_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_5_b">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_5_b_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <joint name="${prefix}joint_6_t" type="revolute">
       <parent link="${prefix}link_5_b"/>
       <child link="${prefix}link_6_t"/>
@@ -142,6 +224,17 @@
       <axis xyz="-1 0 0" />
       <limit lower="${radians(-210)}" upper="${radians(210)}" effort="141.12" velocity="${radians(180)}"/>
     </joint>
+    <transmission name="${prefix}joint_6_t_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_6_t">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_6_t_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <joint name="${prefix}joint_6_t-tool0" type="fixed">
       <origin xyz="0.200 0 0" rpy="${radians(180)} ${radians(-90)} 0"/>
       <parent link="${prefix}link_6_t"/>
